@@ -12,7 +12,7 @@ def home(email):
     data = {}
 
     # Execute the command that creates a string.json file with results
-    subprocess.run(f'/opt/render/project/src/v3/cmd/mosint/main.exe {email} --output string')
+    subprocess.run(f'./main {email} --output string')
 
     #open that json file
     with open('./string', 'r') as f:
