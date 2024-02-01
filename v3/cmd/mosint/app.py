@@ -12,7 +12,7 @@ def home(email):
     data = {}
 
     # Execute the command that creates a string.json file with results
-    subprocess.Popen(['./main', f'{email}', '--config', '/etc/secrets/.mosint.yaml', '--output', 'string'], shell=True)
+    subprocess.Popen(['./main', f'{email}', '--config', '/etc/secrets/.mosint.yaml', '--output', 'string'])
 
     #open that json file
     with open('./string', 'r') as f:
