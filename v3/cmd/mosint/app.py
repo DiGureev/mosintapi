@@ -1,4 +1,4 @@
-import os
+import subprocess
 from flask import Flask
 import json
 
@@ -12,7 +12,7 @@ def home(email):
     data = {}
 
     # Execute the command that creates a string.json file with results
-    os.system('./main' f'{email}' '--config' '/etc/secrets/.mosint.yaml' '--output' 'string')
+    subprocess.run('./main', f'{email}', '--config', '/etc/secrets/.mosint.yaml', '--output', 'string')
 
     #open that json file
     with open('./string', 'r') as f:
