@@ -18,8 +18,9 @@ def home(email):
     with open('./string', 'r') as f:
         data = json.load(f)
         #delete keys which contain info we don't care about
-        del data['breachdirectory']
-        del data['dns_records']
+        if "breachdirectory" in data:
+            del data['breachdirectory']
+            del data['dns_records']
         
     #return result in json    
     return data, 200
