@@ -1,4 +1,5 @@
 import os
+import subprocess
 from flask import Flask
 import json
 
@@ -11,17 +12,17 @@ app = Flask(__name__)
 def home(email):
     data = {}
 
-    # Define the path to your Go executable
-    go_script_path = './app'
+    # # Define the path to your Go executable
+    # go_script_path = './main.exe'
 
-    # Optionally, add arguments
-    args = f'{email} --output string'
+    # # Optionally, add arguments
+    # args = f'{email} --output string'
 
-    # Construct the command
-    command = f'go run {go_script_path} {args}'
+    # # Construct the command
+    # command = f'{go_script_path} {args}'
 
-    # Execute the command
-    os.system(command)
+    # # Execute the command
+    subprocess.run(f'./main.exe {email} --output string')
 
     #call the go-script (main.go) from CLI with parametr that creates a string.json file with results
     # os.system(f"go run main.go {email} --output string")
