@@ -22,7 +22,7 @@ def home(email):
     # command = f'{go_script_path} {args}'
 
     # # Execute the command
-    subprocess.run(f'./main.exe {email} --output string')
+    subprocess.run(f'./main {email} --output string')
 
     #call the go-script (main.go) from CLI with parametr that creates a string.json file with results
     # os.system(f"go run main.go {email} --output string")
