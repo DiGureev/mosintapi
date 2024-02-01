@@ -12,20 +12,9 @@ app = Flask(__name__)
 def home(email):
     data = {}
 
-    # # Define the path to your Go executable
-    # go_script_path = './main.exe'
+    # Execute the command that creates a string.json file with results
+    subprocess.run(f'v3\cmd\mosint\main.exe {email} --output string')
 
-    # # Optionally, add arguments
-    # args = f'{email} --output string'
-
-    # # Construct the command
-    # command = f'{go_script_path} {args}'
-
-    # # Execute the command
-    subprocess.run(f'./main {email} --output string')
-
-    #call the go-script (main.go) from CLI with parametr that creates a string.json file with results
-    # os.system(f"go run main.go {email} --output string")
     #open that json file
     with open('./string', 'r') as f:
         data = json.load(f)
