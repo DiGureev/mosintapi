@@ -55,8 +55,6 @@ def home(email):
     cleandata["websites"]["twitter"] = data["twitter_exists"]
     cleandata["data"] = data["hunter"]["data"]
 
-    print(cleandata)
-
     return cleandata, 200
 
 if __name__ == "__main__":
