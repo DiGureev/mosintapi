@@ -18,12 +18,16 @@ def home(email):
         print("Exists")
         with open(f"./{emailname}.json","r") as f:
             data = json.load(f)
+
     else:
         print("Does not Exist")
         # Execute the command that creates a string.json file with results
         subprocess.run(['./main', f'{email}', '--config', '/etc/secrets/.mosint.yaml', '--output', 'string'], check=True)
+        
+        # For testing locally:
+        # os.system(f'go run /Users/Diana/Desktop/mosintapi/v3/cmd/mosint/main.go {email} --config /Users/Diana/Desktop/mosintapi/.mosint.yaml --output string')
 
-        #open that json file
+        # open that json file
         with open('./string', 'r') as f:
             data = json.load(f)
             #delete keys which contain info we don't care about
@@ -35,7 +39,23 @@ def home(email):
                 json.dump(data, f)
 
     #return result in json    
-    return data, 200
+    
+    cleandata = {}
+
+    cleandata["email"] = data["email"]
+    cleandata["verified"] = data["verified"]
+    cleandata["blacklisted"] = data["emailrep"]["details"]["blacklisted"]
+    cleandata["age"] = data["emailrep"]["details"]["days_since_domain_creation"]
+    cleandata["spam"] = data["emailrep"]["details"]["spam"]
+    cleandata["suspicious"] = data["emailrep"]["suspicious"]
+    cleandata["websites"] = {}
+    cleandata["websites"]["google_search"] = data["google_search"]
+    cleandata["websites"]["instagram"] = data["instagram_exists"]
+    cleandata["websites"]["spotify"] = data["spotify_exists"]
+    cleandata["websites"]["twitter"] = data["twitter_exists"]
+    cleandata["data"] = data["hunter"]["data"]
+
+    return cleandata, 200
 
 if __name__ == "__main__":
     app.run(debug=True)
