@@ -16,7 +16,7 @@ def home(email):
 
     if os.path.exists(f"./reports/{emailname}.json"):
         print("Exists")
-        with open(f"./{emailname}.json","r") as f:
+        with open(f"./reports/{emailname}.json","r") as f:
             data = json.load(f)
 
     else:
