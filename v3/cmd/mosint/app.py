@@ -14,9 +14,9 @@ def home(email):
 
     emailname = email.replace(".", "_")
 
-    if os.path.exists(f"./reports/{emailname}.json"):
+    if os.path.exists(f"./{emailname}.json"):
         print("Exists")
-        with open(f"./reports/{emailname}.json","r") as f:
+        with open(f"./{emailname}.json","r") as f:
             data = json.load(f)
 
     else:
@@ -35,7 +35,7 @@ def home(email):
                 del data['breachdirectory']
                 del data['dns_records']
 
-        with open(f"./reports/{emailname}.json", "w") as f:
+        with open(f"./{emailname}.json", "w") as f:
                 json.dump(data, f)
 
     #return result in json    
